@@ -1,4 +1,4 @@
-# http.thread.js
+# thread-http
 
 A [thread.js](https://github.com/h2non/thread.js) module which implements a tiny, full featured HTTP client designed to be used in Web Workers
 
