@@ -1,0 +1,36 @@
+{
+  "name": "thread-http",
+  "description": "A thread.js module which implements a tiny, full featured HTTP client designed to be used in Web Workers",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": "h2non/thread-http",
+  "author": "Tomas Aparicio",
+  "main": "./http.js",
+  "keywords": [
+    "http",
+    "request",
+    "xhr",
+    "ajax",
+    "worker",
+    "webworker",
+    "compute",
+    "non-blocking",
+    "async",
+    "thread"
+  ],
+  "ignore": [
+    "**/.*",
+    ".*",
+    "*.md",
+    "src",
+    "lib",
+    "test",
+    "Makefile",
+    ".editorconfig",
+    ".gitignore",
+    ".travis.yml",
+    ".npmignore",
+    "package.json",
+    "examples"
+  ]
+}
