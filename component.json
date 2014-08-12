@@ -1,9 +1,9 @@
 {
-  "name": "thread-http",
-  "description": "A thread.js module which implements a tiny, full featured HTTP client designed to be used in Web Workers",
+  "name": "lil-http",
+  "description": "A lil' module which implements a tiny, full featured HTTP client",
   "version": "0.1.0",
   "license": "MIT",
-  "repository": "h2non/thread-http",
+  "repository": "lil-js/http",
   "scripts": [
     "http.js",
     "http.min.js"
@@ -20,8 +20,5 @@
     "non-blocking",
     "async",
     "thread"
-  ],
-  "dependencies": {
-    "h2non/http.js": "*"
-  }
+  ]
 }

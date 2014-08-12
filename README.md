@@ -1,6 +1,6 @@
-# thread-http
+# lil' http
 
-A [thread.js](https://github.com/h2non/thread.js) module which implements a tiny, full featured HTTP client designed to be used in Web Workers
+A lil' module which implements a tiny, full featured HTTP client
 
 **This library is still a work in progress**
 
@@ -8,16 +8,16 @@ A [thread.js](https://github.com/h2non/thread.js) module which implements a tiny
 
 Via Bower package manager
 ```bash
-$ bower install thread-http
+$ bower install lil-http
 ```
 
 ```bash
-$ component install h2non/thread-http
+$ component install lil-js/http
 ```
 
 Or loading the script remotely (just for testing or development)
 ```html
-<script src="//cdn.rawgit.com/h2non/thread-http/0.1.0/http.js"></script>
+<script src="//cdn.rawgit.com/lil-js/http/0.1.0/http.js"></script>
 ```
 
 ### Environments
@@ -32,27 +32,46 @@ Cross-browser support guaranteed running tests in [Testling](https://ci.testling
 
 ### Usage
 
-Require the [thread](https://github.com/h2non/thread.js) module
+Require the module
 ```js
-var thread = require('thread')
-```
+var http = require('lil-http')
+`` 
 
-Create a new thread with custom scope and require the `http` module
+Make a GET request
 ```js
-var worker = thread({
-  require: ['http']
+http.get('/sample.json', { headers: { 'X-Version': '0.1.0' }}, function (err, res)) {
+  if (res.status === 200) {
+    console.log(res.data)
+  }
 })
 ```
 
-Run task which uses `http`
-```js
-worker.run(function (done) {
-  http.get('data.json', done)
-}).then(function (data) {
-  console.log(JSON.parse(data).salutation) // -> "Hello World"
-})
-```
+## API
+
+#### http.get(url, config, cb)
+
+#### http.post(url, data, config, cb)
+
+#### http.put(url, data, config, cb)
+
+#### http.del(url, data, config, cb)
+
+#### http.patch(url, data, config, cb)
+
+#### http.head(url, config, cb)
+
+### Config options
+
+- async `boolean` - Define if the request is asynchronous
+- headers `object` - Request headers
+
+### Response object
+
+- **data** `mixed` - Body response
+- **status** `number` - HTTP response status code
+- **headers** `object` - Response headers
 
 ## License
 
 MIT - Tomas Aparicio
+
