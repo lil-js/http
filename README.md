@@ -35,7 +35,7 @@ Cross-browser support guaranteed running tests in [Testling](https://ci.testling
 Require the module
 ```js
 var http = require('lil-http')
-`` 
+``` 
 
 Make a GET request
 ```js
