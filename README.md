@@ -1,4 +1,4 @@
-# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/h2non/angular-thread.svg?branch=master)][travis]
+# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/lil-js/http.svg?branch=master)][travis]
 
 A lil' module which implements a tiny, simple but full featured HTTP client
 
