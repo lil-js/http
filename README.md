@@ -7,10 +7,10 @@ A lil' module which implements a tiny, simple but full featured HTTP client
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.x</td>
+<td><b>Version</b></td><td>0.1.0</td>
 </tr>
 <tr>
-<td><b>Size</b></td><td>4 KB / 1 KB (gzip)</td>
+<td><b>Size</b></td><td>2 KB / 1 KB (gzipped)</td>
 </tr>
 </table>
 
