@@ -65,6 +65,25 @@ lil.http.get('/sample.json', {
 })
 ```
 
+### Config options
+
+- **url** `string` - Server request URL
+- **data** `mixed` - Payload data to send as body request
+- **headers** `object` - Map of strings representing HTTP headers to send to the server
+- **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
+- **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
+- **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
+- **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
+- **method** `string` - Request HTTP method. Default to `GET
+
+### Response/error object
+
+- **data** `mixed` - Body response
+- **status** `number` - HTTP response status code
+- **headers** `object` - Response headers
+- **xhr** `object` - Original XHR instance
+- **error** `mixed` - Error info, usually `Error()` instance object (in case that an error happens)
+
 ## API
 
 #### http(url, options, cb)
@@ -85,23 +104,6 @@ lil.http.get('/sample.json', {
 
 #### http.defaults
 
-### Config options
-
-- **url** `string` - Server request URL
-- **data** `mixed` - Payload data to send as body request
-- **headers** `object` - Map of strings representing HTTP headers to send to the server
-- **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
-- **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
-- **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
-- **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
-- **method** `string` - Request HTTP method. Default to `GET`
-
-### Response object
-
-- **data** `mixed` - Body response
-- **status** `number` - HTTP response status code
-- **headers** `object` - Response headers
-- **xhr** `object` -  Original XHR instance
 
 ## Contributing
 
