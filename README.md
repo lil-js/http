@@ -23,6 +23,7 @@ A lil' module which implements a tiny, simple but full featured HTTP client
 - Support auth credentials
 - Support passing custom headers
 - Trivial request state handling based on callback
+- Transparent payload JSON serializer
 
 ## Installation
 
