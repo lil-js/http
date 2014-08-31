@@ -21,6 +21,7 @@
     "**/.*",
     ".*",
     "*.md",
+    "*.sh",
     "test",
     "Makefile",
     ".editorconfig",
