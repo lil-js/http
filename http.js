@@ -20,8 +20,8 @@
     return o && toStr.call(o) === '[object Object]'
   }
 
-  function isFn(fn) {
-    return typeof fn === 'function'
+  function isArr(o) {
+    return o && toStr.call(o) === '[object Array]'
   }
 
   function extend(target) {
@@ -108,7 +108,7 @@
   function request(config, cb) {
     var errorHandler
     var xhr = createClient(config)
-    if (!xhr) { return }
+    var data = isObj(config.data) || isArr(config.data) ? JSON.stringify(config.data) : config.data
 
     errorHandler = onError(xhr, cb)
     xhr.onerror = errorHandler
@@ -116,7 +116,7 @@
     xhr.onload = onLoad(xhr, cb)
 
     try {
-      xhr.send(config.data)
+      xhr.send(data)
     } catch (e) {
       errorHandler(e)
     }
@@ -130,7 +130,7 @@
 
       for (i = 0, l = args.length; i < l; i += 1) {
         cur = args[i]
-        if (isFn(cur)) {
+        if (typeof cur === 'function') {
           cb = cur
         } else if (isObj(cur)) {
           extend(config, cur)

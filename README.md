@@ -53,7 +53,7 @@ Cross-browser support guaranteed running tests in [BrowserStack](http://browsers
 ### Usage
 
 ```js
-lil.http..get('/sample.json', {
+lil.http.get('/sample.json', {
   auth: { user: 'Tom', password: 'p@s$w0rD' }
   headers: { 'X-Version': '0.1.0' }
 }, function (err, res)) {
@@ -82,6 +82,7 @@ lil.http..get('/sample.json', {
 
 ### Config options
 
+- **url** `string` - Server request URL
 - **data** `mixed` - Payload data to send as body request
 - **headers** `object` - Map of strings representing HTTP headers to send to the server
 - **timeout** `number` - Request maximum timeout in milliseconds
