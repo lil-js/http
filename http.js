@@ -87,7 +87,7 @@
 
   function createClient(config) {
     var xhr = null
-    var method = config.method || 'GET'
+    var method = (config.method || 'GET').toUpperCase()
     var auth = config.auth || {}
     var url = config.url
 

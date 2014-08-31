@@ -10,7 +10,7 @@ A lil' module which implements a tiny, simple but full featured HTTP client
 <td><b>Version</b></td><td>0.1.0</td>
 </tr>
 <tr>
-<td><b>Size</b></td><td>2 KB / 1 KB (gzipped)</td>
+<td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
 </tr>
 </table>
 
@@ -42,12 +42,14 @@ Cross-browser support guaranteed running tests in [BrowserStack](http://browsers
 
 ### Usage
 
-
-Make a GET request
 ```js
-lil.get('/sample.json', { headers: { 'X-Version': '0.1.0' }}, function (err, res)) {
+lil.http..get('/sample.json', {
+  auth: { user: 'Tom', password: 'p@s$w0rD' }
+  headers: { 'X-Version': '0.1.0' }
+}, function (err, res)) {
+  if (err) throw new Error('Cannot perform the request: ' + err.status)
   if (res.status === 200) {
-    console.log(res.data)
+    console.log(JSON.parse(res.data))
   }
 })
 ```
@@ -76,6 +78,7 @@ lil.get('/sample.json', { headers: { 'X-Version': '0.1.0' }}, function (err, res
 - **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
 - **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
+- **method** `string` - HTTP method. Default to GET
 
 ### Response object
 
