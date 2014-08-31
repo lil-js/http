@@ -81,16 +81,20 @@ lil.http.get('/sample.json', {
 
 #### http.head(url, options, cb)
 
+#### http.VERSION
+
+#### http.defaults
+
 ### Config options
 
 - **url** `string` - Server request URL
 - **data** `mixed` - Payload data to send as body request
 - **headers** `object` - Map of strings representing HTTP headers to send to the server
-- **timeout** `number` - Request maximum timeout in milliseconds
+- **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
 - **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
 - **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
-- **method** `string` - HTTP method. Default to GET
+- **method** `string` - Request HTTP method. Default to `GET`
 
 ### Response object
 
