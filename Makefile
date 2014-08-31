@@ -1,10 +1,9 @@
 BROWSERIFY = node ./node_modules/browserify/bin/cmd.js
 MOCHA = ./node_modules/.bin/mocha
 UGLIFYJS = ./node_modules/.bin/uglifyjs
-BANNER = "/*! thread.js - v0.1 - MIT License - https://github.com/h2non/thread.js */"
+BANNER = "/*! lil-http - v0.1 - MIT License - https://github.com/lil-js/http */"
 MOCHA_PHANTOM = ./node_modules/.bin/mocha-phantomjs
 MOCHA = ./node_modules/.bin/mocha
-TESTLING = ./node_modules/.bin/testling
 
 define release
 	VERSION=`node -pe "require('./package.json').version"` && \
@@ -25,33 +24,17 @@ endef
 
 default: all
 all: test
-browser: cleanbrowser banner browserify uglify
+browser: uglify
 test: browser mocha
 
-banner:
-	@echo $(BANNER) > thread.js
-
-browserify:
-	$(BROWSERIFY) \
-		--exports require \
-		--standalone thread \
-		--entry ./src/main.js >> ./thread.js
-
 uglify:
-	$(UGLIFYJS) thread.js --mangle --preamble $(BANNER) > thread.min.js
-
-cleanbrowser:
-	rm -f *.js
+	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) > http.min.js
 
 mocha:
 	$(MOCHA_PHANTOM) --reporter spec --ui bdd test/runner.html
-	$(MOCHA) --reporter spec --ui bdd test/utils.js
-
-testling:
-	$(TESTLING)
 
 loc:
-	wc -l src/*
+	wc -l http.js
 
 release:
 	@$(call release, patch)
@@ -61,4 +44,3 @@ release-minor:
 
 publish: browser release
 	git push --tags origin HEAD:master
-	npm publish

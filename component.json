@@ -4,21 +4,21 @@
   "version": "0.1.0",
   "license": "MIT",
   "repository": "lil-js/http",
+  "author": "Tomas Aparicio",
+  "license": "MIT",
   "scripts": [
     "http.js",
     "http.min.js"
   ],
-  "license": "MIT",
   "keywords": [
+    "lil",
+    "tiny",
+    "micro",
     "http",
     "request",
     "xhr",
     "ajax",
-    "worker",
-    "webworker",
-    "compute",
-    "non-blocking",
-    "async",
-    "thread"
+    "https",
+    "agent"
   ]
 }
