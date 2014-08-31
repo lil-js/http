@@ -14,6 +14,16 @@ A lil' module which implements a tiny, simple but full featured HTTP client
 </tr>
 </table>
 
+## Features
+
+- Simple fully configurable API
+- Support any HTTP verb
+- Transparent support for CORS
+- Built-in error handling
+- Support auth credentials
+- Support passing custom headers
+- Trivial request state handling based on callback
+
 ## Installation
 
 Via [Bower](http://bower.io)
