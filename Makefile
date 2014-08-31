@@ -31,7 +31,10 @@ uglify:
 	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) > http.min.js
 
 mocha:
-	$(MOCHA_PHANTOM) --reporter spec --ui bdd test/runner.html
+	bash server.sh 8888
+	$(MOCHA_PHANTOM) --reporter spec --ui bdd http://localhost:8888/test/runner.html
+	kill -9 `cat .server.pid | head -n 1`
+	rm -f .server.pid
 
 loc:
 	wc -l http.js
