@@ -85,7 +85,7 @@ lil.http.get('/sample.json', {
 - **status** `number` - HTTP response status code
 - **headers** `object` - Response headers
 - **xhr** `object` - Original XHR instance
-- **error** `mixed` - Error info, usually `Error()` instance object (in case that an error happens)
+- **error** `mixed` - Error info, usually an `Error()` instance (in case that an error happens)
 
 ## API
 
@@ -106,7 +106,6 @@ lil.http.get('/sample.json', {
 #### http.VERSION
 
 #### http.defaults
-
 
 ## Contributing
 
