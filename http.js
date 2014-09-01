@@ -1,7 +1,17 @@
 /*! lil-http - v0.1 - MIT License - https://github.com/lil-js/http */
-(function (global) {
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['exports'], factory)
+  } else if (typeof exports === 'object') {
+    factory(exports)
+    if (typeof module === 'object' && module !== null) {
+      module.exports = exports = exports.http
+    }
+  } else {
+    factory((root.lil = root.lil || {}))
+  }
+}(this, function (exports) {
   var VERSION = '0.1.0'
-  var lil = global.lil || {}
   var toStr = Object.prototype.toString
   var slice = Array.prototype.slice
   var origin = global.location.origin
@@ -156,10 +166,5 @@
   http.patch = requestFactory('PATCH')
   http.head = requestFactory('HEAD')
 
-  lil.http = http
-  if (typeof define === 'function' && define.amd) {
-    define(function () { return http })
-  } else {
-    global.lil = lil
-  }
-}(this))
+  exports.http = http
+}))
