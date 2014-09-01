@@ -12,6 +12,9 @@ A lil' module which implements a tiny, simple but full featured HTTP client
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
 </tr>
+<tr>
+<td><b>Environment</b></td><td>Browser</td>
+</tr>
 </table>
 
 ## Features
