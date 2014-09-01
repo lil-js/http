@@ -166,5 +166,5 @@
   http.patch = requestFactory('PATCH')
   http.head = requestFactory('HEAD')
 
-  exports.http = http
+  return exports.http = http
 }))
