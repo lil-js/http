@@ -3,7 +3,6 @@ MOCHA = ./node_modules/.bin/mocha
 UGLIFYJS = ./node_modules/.bin/uglifyjs
 BANNER = "/*! lil-http - v0.1 - MIT License - https://github.com/lil-js/http */"
 MOCHA_PHANTOM = ./node_modules/.bin/mocha-phantomjs
-MOCHA = ./node_modules/.bin/mocha
 
 define release
 	VERSION=`node -pe "require('./package.json').version"` && \
@@ -28,7 +27,7 @@ browser: uglify
 test: browser mocha
 
 uglify:
-	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) > http.min.js
+	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) --source-map http.min.js.map > http.min.js
 
 mocha:
 	bash server.sh 8888

@@ -1,6 +1,6 @@
 {
   "name": "lil-http",
-  "description": "A lil' module which implements a tiny, full featured HTTP client",
+  "description": "Tiny, lightweight, full featured HTTP client",
   "version": "0.1.0",
   "license": "MIT",
   "repository": "lil-js/http",
