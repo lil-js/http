@@ -6,11 +6,6 @@ Tiny, lightweight, full featured HTTP client
 
 <table>
 <tr>
-<td colspan="2">
-
-</td>
-</tr>
-<tr>
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
