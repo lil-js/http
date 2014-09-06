@@ -1,4 +1,6 @@
-# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/lil-js/http.svg?branch=master)][travis] <img align="center" height="200" src="http://lil-js.github.io/img/liljs-logo.png" />
+# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/lil-js/http.svg?branch=master)][travis]
+
+<img align="center" height="160" src="http://lil-js.github.io/img/liljs-logo.png" />
 
 Tiny, lightweight, full featured HTTP client
 
