@@ -4,6 +4,11 @@ Tiny, lightweight, full featured HTTP client
 
 <table>
 <tr>
+<td colspan="2">
+  <img align="center" height="150" src="http://lil-js.github.io/img/liljs-logo.png" />
+</td>
+</tr>
+<tr>
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
@@ -14,11 +19,6 @@ Tiny, lightweight, full featured HTTP client
 </tr>
 <tr>
 <td><b>Environment</b></td><td>Browser</td>
-</tr>
-<tr>
-<td colspan="2">
-  <img align="right" height="140" src="http://lil-js.github.io/img/liljs-logo.png" style="float:right" />
-</td>
 </tr>
 </table>
 
