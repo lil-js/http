@@ -5,7 +5,7 @@ Tiny, lightweight, full featured HTTP client
 <table>
 <tr>
 <td colspan="2">
-  <img align="center" height="150" src="http://lil-js.github.io/img/liljs-logo.png" />
+  <img align="center" height="200" src="http://lil-js.github.io/img/liljs-logo.png" />
 </td>
 </tr>
 <tr>
