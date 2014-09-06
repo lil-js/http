@@ -1,4 +1,4 @@
-# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/lil-js/http.svg?branch=master)][travis] [![Gitter chat](https://badges.gitter.im/lil-js/http.png)](https://gitter.im/lil-js/http)
+# [lil](http://lil-js.github.io)'-http [![Build Status](https://api.travis-ci.org/lil-js/http.svg?branch=master)][travis] [![Stories in Ready](https://badge.waffle.io/lil-js/http.png?label=ready&title=Ready)](https://waffle.io/lil-js/http) [![Gitter chat](https://badges.gitter.im/lil-js/http.png)](https://gitter.im/lil-js/http)
 
 <img align="center" height="150" src="http://lil-js.github.io/img/liljs-logo.png" />
 
