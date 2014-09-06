@@ -36,7 +36,7 @@ Via [Bower](http://bower.io)
 ```bash
 bower install lil-http
 ```
-Via [Component](http://component.io/)
+Via [Component](https://github.com/componentjs/component)
 ```bash
 component install lil-js/http
 ```
