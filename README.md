@@ -2,7 +2,7 @@
 
 Tiny, lightweight, full featured HTTP client
 
-<img src="http://lil-js.github.io/img/liljs-logo.png" height="260" align="right" style="float: right" />
+<img align="right" height="250" src="http://lil-js.github.io/img/liljs-logo.png" style="float: right" />
 
 <table>
 <tr>
