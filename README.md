@@ -2,6 +2,8 @@
 
 Tiny, lightweight, full featured HTTP client
 
+<img src="http://lil-js.github.io/img/liljs-logo.png" />
+
 <table>
 <tr>
 <td><b>Name</b></td><td>http</td>
@@ -77,7 +79,7 @@ lil.http.get('/sample.json', {
 - **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
 - **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
-- **method** `string` - Request HTTP method. Default to `GET
+- **method** `string` - Request HTTP method. Default to `GET`
 
 ### Response/error object
 
