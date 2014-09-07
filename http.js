@@ -60,7 +60,7 @@
     headers.forEach(function (header) {
       if (header) {
         header = header.split(':')
-        map[header[0]] = (header[1] || '').trim()
+        map[header[0].trim()] = (header[1] || '').trim()
       }
     })
     return map
