@@ -14,7 +14,7 @@
   var VERSION = '0.1.0'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
-  var origin = global.location.origin
+  var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
 
   var defaults = {
