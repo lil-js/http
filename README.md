@@ -25,7 +25,10 @@ Tiny, lightweight, full featured HTTP client
 - Support any HTTP verb
 - Transparent support for CORS
 - Built-in error handling
+- Binary response handling support
+- Content-Type autodiscovery
 - Support auth credentials
+- Request progress status report
 - Support passing custom headers
 - Trivial request state handling based on callback
 - Transparent payload JSON serializer
@@ -58,14 +61,35 @@ Cross-browser support guaranteed running tests in [BrowserStack](http://browsers
 
 ### Usage
 
+You could fetch de module via `require()` if it's available.
+Otherwise, global fallback will be used, exposed via `lil.http`
+
 ```js
-lil.http.get('/sample.json', {
+var http = require('lil-http')
+```
+
+##### Sample GET request
+```js
+http.get('/sample.json', {
   auth: { user: 'Tom', password: 'p@s$w0rD' }
   headers: { 'X-Version': '0.1.0' }
 }, function (err, res)) {
   if (err) throw new Error('Cannot perform the request: ' + err.status)
   if (res.status === 200) {
-    console.log(JSON.parse(res.data))
+    console.log(res.data)
+  }
+})
+```
+
+##### Sample POST request
+```js
+http.post('/register', {
+  data: { user: 'Tom' },
+  headers: { 'API-Key': '8c1c4180-36b5-11e4-8510-0800200c9a66' }
+}, function (err, res)) {
+  if (err) throw new Error('Cannot register: ' + err.status)
+  if (res.status === 200) {
+    console.log('Registered!')
   }
 })
 ```
@@ -80,10 +104,11 @@ lil.http.get('/sample.json', {
 - **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
 - **method** `string` - Request HTTP method. Default to `GET`
+- **responseType** `string` - Define how to handle the response data. Allowed values are: `text`, `arraybuffer`, `blob` or `document`
 
 ### Response/error object
 
-- **data** `mixed` - Body response
+- **data** `mixed` - Body response. If the MIME type is `JSON-compatible`, it will be transparently parsed
 - **status** `number` - HTTP response status code
 - **headers** `object` - Response headers
 - **xhr** `object` - Original XHR instance
@@ -91,23 +116,32 @@ lil.http.get('/sample.json', {
 
 ## API
 
-#### http(url, options, cb)
+#### http(url, options, cb, [ progressCb ])
+Return: `XHR`
 
-#### http.get(url, options, cb)
+#### http.get(url, options, cb, [ progressCb ])
 
-#### http.post(url, options, cb)
+#### http.post(url, options, cb, [ progressCb ])
 
-#### http.put(url, options, cb)
+#### http.put(url, options, cb, [ progressCb ])
 
-#### http.del(url, options, cb)
+#### http.del(url, options, cb, [ progressCb ])
 
-#### http.patch(url, options, cb)
+#### http.patch(url, options, cb, [ progressCb ])
 
-#### http.head(url, options, cb)
-
-#### http.VERSION
+#### http.head(url, options, cb, [ progressCb ])
 
 #### http.defaults
+Type: `object`
+
+Default client config object
+
+#### http.defaultContent
+Type: `string` Value: `text`
+
+Default `Content-Type` request header value
+
+#### http.VERSION
 
 ## Contributing
 

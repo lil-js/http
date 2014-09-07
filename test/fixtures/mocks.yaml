@@ -1,0 +1,64 @@
+- request:
+    url: ^/comments.json$
+    method:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+  response:
+    - status: 200
+      latency: 10
+      headers:
+        content-type: application/json
+      body: >
+        [{"id": 1, "comment": "hey there"}]
+- request:
+    url: ^/comments.xml$
+    method:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+  response:
+    - status: 200
+      latency: 10
+      headers:
+        content-type: application/xml
+      body: >
+        <comment>Hey there</comment>
+- request:
+    url: ^/not-found$
+    method:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+  response:
+    - status: 404
+      latency: 10
+      headers:
+        content-type: plain/text
+- request:
+    url: ^/server-error$
+    method:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+  response:
+    - status: 500
+      latency: 10
+      headers:
+        content-type: plain/text
+- request:
+    url: ^/timeout$
+    method:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+  response:
+    - status: 200
+      latency: 1000
+      headers:
+        content-type: plain/text
