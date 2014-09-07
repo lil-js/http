@@ -29,6 +29,7 @@ describe('http', function () {
         expect(res.status).to.be.equal(200)
         expect(res.data).to.be.deep.equal({ hello: 'world' })
         expect(res.xhr).to.be.an('object')
+        expect(res.headers).to.be.an('object')
         done()
       })
     })
@@ -38,6 +39,7 @@ describe('http', function () {
         expect(res).to.be.null
         expect(err.status).to.be.equal(404)
         expect(err.xhr).to.be.an('object')
+        expect(err.headers).to.be.an('object')
         done()
       })
     })
@@ -49,6 +51,7 @@ describe('http', function () {
         expect(err).to.be.null
         expect(res.status).to.be.equal(200)
         expect(res.data).to.be.deep.equal({ hello: 'world' })
+        expect(res.headers).to.be.an('object')
         expect(res.xhr).to.be.an('object')
         done()
       })

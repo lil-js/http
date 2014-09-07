@@ -55,6 +55,17 @@
     }
   }
 
+  function getHeaders(xhr) {
+    var map = {}, headers = xhr.getAllResponseHeaders().split('\n')
+    headers.forEach(function (header) {
+      if (header) {
+        header = header.split(':')
+        map[header[0]] = (header[1] || '').trim()
+      }
+    })
+    return map
+  }
+
   function parseData(xhr) {
     var data, content = xhr.getResponseHeader('Content-Type')
     if (xhr.responseType === 'text') {
@@ -68,10 +79,10 @@
 
   function buildResponse(xhr) {
     return {
+      xhr: xhr,
       status: xhr.status,
       data: parseData(xhr),
-      headers: xhr.getAllResponseHeaders(),
-      xhr: xhr
+      headers: getHeaders(xhr)
     }
   }
 
