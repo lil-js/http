@@ -11,7 +11,7 @@
     factory((root.lil = root.lil || {}))
   }
 }(this, function (exports) {
-  var VERSION = '0.1.0'
+  var VERSION = '0.1.1'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var origin = location.origin
@@ -156,11 +156,11 @@
     var data = isObj(config.data) || isArr(config.data) ? JSON.stringify(config.data) : config.data
     var errorHandler = onError(xhr, cb)
 
-    xhr.addEventListener('load', onLoad(xhr, cb), false)
-    xhr.addEventListener('error', errorHandler, false)
-    xhr.addEventListener('timeout', errorHandler, false)
-    xhr.addEventListener('abort', errorHandler, false)
-    if (typeof progress === 'function') xhr.addEventListener('progress', updateProgress(xhr, progress), false)
+    xhr.onload = onLoad(xhr, cb)
+    xhr.onerror = errorHandler
+    xhr.ontimeout = errorHandler
+    xhr.onabort = errorHandler
+    if (typeof progress === 'function') xhr.onprogress = updateProgress(xhr, progress)
 
     try {
       xhr.send(data)
