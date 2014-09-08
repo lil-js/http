@@ -51,8 +51,6 @@ Or loading the script remotely
 
 ### Environments
 
-Cross-browser support guaranteed running tests in [BrowserStack](http://browserstack.com/)
-
 - Chrome >= 5
 - Firefox >= 3
 - Safari >= 5
@@ -64,13 +62,10 @@ Cross-browser support guaranteed running tests in [BrowserStack](http://browsers
 You could fetch de module via `require()` if it's available.
 Otherwise, global fallback will be used, exposed via `lil.http`
 
-```js
-var http = require('lil-http')
-```
 
 ##### Sample GET request
 ```js
-http.get('/sample.json', {
+lil.http.get('/sample.json', {
   auth: { user: 'Tom', password: 'p@s$w0rD' }
   headers: { 'X-Version': '0.1.0' }
 }, function (err, res)) {
@@ -83,7 +78,7 @@ http.get('/sample.json', {
 
 ##### Sample POST request
 ```js
-http.post('/register', {
+lil.http.post('/register', {
   data: { user: 'Tom' },
   headers: { 'API-Key': '8c1c4180-36b5-11e4-8510-0800200c9a66' }
 }, function (err, res)) {
