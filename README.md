@@ -132,7 +132,7 @@ Type: `object`
 Default client config object
 
 #### http.defaultContent
-Type: `string` Value: `text`
+Type: `string` Value: `text/plain`
 
 Default `Content-Type` request header value
 
