@@ -9,7 +9,7 @@ Tiny, lightweight, full featured HTTP client
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.0</td>
+<td><b>Version</b></td><td>0.1.1</td>
 </tr>
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
