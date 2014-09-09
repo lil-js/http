@@ -173,7 +173,7 @@
 
   function requestFactory(method) {
     return function (url, options, cb, progress) {
-      var config = extend({}, defaults)
+      var config = extend({}, defaults, { method: method })
       var args = slicer.call(arguments)
       var i, cur = null
 
