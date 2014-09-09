@@ -9,7 +9,7 @@ Tiny, lightweight, full featured HTTP client
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.1</td>
+<td><b>Version</b></td><td>0.1.2</td>
 </tr>
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
@@ -46,7 +46,7 @@ component install lil-js/http
 
 Or loading the script remotely
 ```html
-<script src="//cdn.rawgit.com/lil-js/http/0.1.1/http.js"></script>
+<script src="//cdn.rawgit.com/lil-js/http/0.1.2/http.js"></script>
 ```
 
 ### Environments
