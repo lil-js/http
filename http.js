@@ -16,6 +16,7 @@
   var slicer = Array.prototype.slice
   var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
+  var hasDomainRequest = typeof XDomainRequest !== 'undefined'
 
   var defaults = {
     method: 'GET',
@@ -125,10 +126,8 @@
     var auth = config.auth || {}
     var url = config.url
 
-    if (isCrossOrigin(url)) {
-      if (typeof XDomainRequest !== 'undefined') {
-        xhr = new XDomainRequest()
-      }
+    if (isCrossOrigin(url) && hasDomainRequest) {
+      xhr = new XDomainRequest()
     } else {
       xhr = new XMLHttpRequest()
     }
