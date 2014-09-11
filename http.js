@@ -126,7 +126,7 @@
     var auth = config.auth || {}
     var url = config.url
 
-    if (isCrossOrigin(url) && hasDomainRequest) {
+    if (hasDomainRequest && isCrossOrigin(url)) {
       xhr = new XDomainRequest()
     } else {
       xhr = new XMLHttpRequest()
@@ -187,6 +187,8 @@
           config.url = cur
         }
       }
+
+      if (typeof cb !== 'function') throw new TypeError('Callback function argument is required')
 
       return request(config, cb, progress)
     }
