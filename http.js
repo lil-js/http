@@ -11,7 +11,7 @@
     factory((root.lil = root.lil || {}))
   }
 }(this, function (exports) {
-  var VERSION = '0.1.2'
+  var VERSION = '0.1.3'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var origin = location.origin
@@ -167,7 +167,8 @@
       errorHandler(e)
     }
 
-    return xhr
+    xhr = null
+    return config
   }
 
   function requestFactory(method) {
