@@ -68,10 +68,10 @@
   }
 
   function parseData(xhr) {
-    var data, content = xhr.getResponseHeader('Content-Type')
+    var data, contentType = xhr.getResponseHeader('Content-Type')
     if (xhr.responseType === 'text') {
       data = xhr.responseText
-      if (content === 'application/json') data = JSON.parse(data)
+      if (contentType === 'application/json') data = JSON.parse(data)
     } else {
       data = xhr.response
     }

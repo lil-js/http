@@ -62,7 +62,6 @@ Or loading the script remotely
 You could fetch de module via `require()` if it's available.
 Otherwise, global fallback will be used, exposed via `lil.http`
 
-
 ##### Sample GET request
 ```js
 lil.http.get('/sample.json', {
