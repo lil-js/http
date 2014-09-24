@@ -11,7 +11,7 @@
     factory((root.lil = root.lil || {}))
   }
 }(this, function (exports) {
-  var VERSION = '0.1.3'
+  var VERSION = '0.1.4'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var origin = location.origin
