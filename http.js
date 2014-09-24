@@ -106,7 +106,7 @@
   function onLoad(xhr, cb) {
     return function () {
       if (xhr.readyState === 4) {
-        if (xhr.status >= 200 && xhr.status < 300) {
+        if (xhr.status >= 200 && xhr.status < 400) {
           cb(null, buildResponse(xhr))
         } else {
           cb(buildResponse(xhr), null)
