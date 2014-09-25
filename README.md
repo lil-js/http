@@ -23,13 +23,13 @@ Tiny, lightweight, full featured HTTP client
 
 - Simple fully configurable API
 - Support any HTTP verb
-- Transparent support for CORS
 - Built-in error handling
 - Binary response handling support
 - Content-Type autodiscovery
 - Support auth credentials
 - Request progress status report
 - Support passing custom headers
+- Transparent support for CORS (in IE)
 - Trivial request state handling based on callback
 - Transparent payload JSON serializer
 
