@@ -11,6 +11,8 @@
     factory((root.lil = root.lil || {}))
   }
 }(this, function (exports) {
+  'use strict'
+
   var VERSION = '0.1.4'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
@@ -173,9 +175,9 @@
 
   function requestFactory(method) {
     return function (url, options, cb, progress) {
+      var i, l, cur = null
       var config = extend({}, defaults, { method: method })
       var args = slicer.call(arguments)
-      var i, cur = null
 
       for (i = 0, l = args.length; i < l; i += 1) {
         cur = args[i]
