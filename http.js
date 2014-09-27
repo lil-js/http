@@ -15,6 +15,7 @@
   var VERSION = '0.1.5'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
+  var hasOwn = Object.prototype.hasOwnProperty
   var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
   var hasDomainRequest = typeof XDomainRequest !== 'undefined'
@@ -41,7 +42,7 @@
     var i, l, x, cur, args = slicer.call(arguments).slice(1)
     for (i = 0, l = args.length; i < l; i += 1) {
       cur = args[i]
-      for (x in cur) if (cur.hasOwnProperty(x)) {
+      for (x in cur) if (hasOwn.call(cur, x)) {
         target[x] = cur[x]
       }
     }
