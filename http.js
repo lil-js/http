@@ -123,7 +123,7 @@
   function createClient(config) {
     var xhr = null
     var method = (config.method || 'GET').toUpperCase()
-    var auth = config.auth || {}
+    var auth = config.auth || {}
     var url = config.url
 
     if (hasDomainRequest && isCrossOrigin(url)) {
@@ -184,7 +184,7 @@
           if (cb !== cur) progress = cur
         } else if (isObj(cur)) {
           extend(config, cur)
-        } else if (typeof cur === 'string') {
+        } else if (typeof cur === 'string' && !config.url) {
           config.url = cur
         }
       }
