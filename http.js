@@ -168,8 +168,7 @@
       errorHandler(e)
     }
 
-    xhr = null
-    return config
+    return { xhr: xhr, config: config, start: new Date().getTime() }
   }
 
   function requestFactory(method) {
@@ -190,7 +189,8 @@
         }
       }
 
-      if (typeof cb !== 'function') throw new TypeError('Callback function argument is required')
+      if (typeof cb !== 'function')
+        throw new TypeError('callback function argument is required')
 
       return request(config, cb, progress)
     }
