@@ -12,8 +12,7 @@
   }
 }(this, function (exports) {
   'use strict'
-
-  var VERSION = '0.1.4'
+  var VERSION = '0.1.5'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var origin = location.origin
