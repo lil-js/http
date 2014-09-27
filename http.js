@@ -12,7 +12,7 @@
   }
 }(this, function (exports) {
   'use strict'
-  var VERSION = '0.1.5'
+  var VERSION = '0.1.6'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
