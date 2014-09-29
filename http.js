@@ -154,7 +154,6 @@
     var xhr = createClient(config)
     var data = isObj(config.data) || isArr(config.data) ? JSON.stringify(config.data) : config.data
     var errorHandler = onError(xhr, cb)
-    var start = new Date().getTime()
 
     xhr.onload = onLoad(xhr, cb)
     xhr.onerror = errorHandler
@@ -168,7 +167,7 @@
       errorHandler(e)
     }
 
-    return { xhr: xhr, config: config, start: start }
+    return { xhr: xhr, config: config }
   }
 
   function requestFactory(method) {
