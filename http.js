@@ -12,7 +12,7 @@
   }
 }(this, function (exports) {
   'use strict'
-  var VERSION = '0.1.6'
+  var VERSION = '0.1.7'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
@@ -22,7 +22,7 @@
 
   var defaults = {
     method: 'GET',
-    timeout: 30 *  1000,
+    timeout: 30 * 1000,
     auth: null,
     headers: null,
     async: true,
@@ -88,8 +88,10 @@
   }
 
   function buildErrorResponse(xhr, error) {
-    var response = buildResponse(xhr)
+    var response = new Error(error.message)
+    extend(response, buildResponse(xhr))
     response.error = error
+    response.stack = error.stack
     return response
   }
 
