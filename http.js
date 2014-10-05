@@ -19,6 +19,7 @@
   var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
   var hasDomainRequest = typeof XDomainRequest !== 'undefined'
+  var noop = function () {}
 
   var defaults = {
     method: 'GET',
@@ -190,10 +191,7 @@
         }
       }
 
-      if (typeof cb !== 'function')
-        throw new TypeError('callback function argument is required')
-
-      return request(config, cb, progress)
+      return request(config, cb || noop, progress)
     }
   }
 
