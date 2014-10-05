@@ -32,11 +32,11 @@
   }
 
   function isObj(o) {
-    return o && toStr.call(o) === '[object Object]'
+    return o && toStr.call(o) === '[object Object]' || false
   }
 
   function isArr(o) {
-    return o && toStr.call(o) === '[object Array]'
+    return o && toStr.call(o) === '[object Array]' || false
   }
 
   function extend(target) {
