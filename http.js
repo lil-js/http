@@ -18,6 +18,7 @@
   var hasOwn = Object.prototype.hasOwnProperty
   var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
+  var jsonMimeRegex = /application\/json/
   var hasDomainRequest = typeof XDomainRequest !== 'undefined'
   var noop = function () {}
 
@@ -33,10 +34,6 @@
 
   function isObj(o) {
     return o && toStr.call(o) === '[object Object]' || false
-  }
-
-  function isArr(o) {
-    return o && toStr.call(o) === '[object Array]' || false
   }
 
   function extend(target) {
@@ -68,11 +65,24 @@
     return map
   }
 
+  function isJSONResponse(xhr) {
+    return jsonMimeRegex.test(xhr.getResponseHeader('Content-Type'))
+  }
+
+  function encodeParams(params) {
+    return Object.getOwnPropertyNames(params).filter(function (name) {
+      return params[name] !== undefined
+    }).map(function (name) {
+      var value = (params[name] === null) ? '' : params[name]
+      return encodeURIComponent(name) + (value ? '=' + encodeURIComponent(value) : '')
+    }).join('&').replace(/%20/g, '+')
+  }
+
   function parseData(xhr) {
-    var data, contentType = xhr.getResponseHeader('Content-Type')
+    var data
     if (xhr.responseType === 'text') {
       data = xhr.responseText
-      if (contentType === 'application/json' && data) data = JSON.parse(data)
+      if (isJSONResponse(xhr) && data) data = JSON.parse(data)
     } else {
       data = xhr.response
     }
@@ -123,11 +133,19 @@
     return match && match[1] === origin
   }
 
+  function getURL(config) {
+    var url = config.url
+    if (isObj(config.params)) {
+      url += '?' + encodeParams(config.params)
+    }
+    return url
+  }
+
   function createClient(config) {
     var xhr = null
     var method = (config.method || 'GET').toUpperCase()
     var auth = config.auth || {}
-    var url = config.url
+    var url = getURL(config)
 
     if (hasDomainRequest && isCrossOrigin(url)) {
       xhr = new XDomainRequest()
@@ -155,7 +173,7 @@
 
   function request(config, cb, progress) {
     var xhr = createClient(config)
-    var data = isObj(config.data) || isArr(config.data) ? JSON.stringify(config.data) : config.data
+    var data = isObj(config.data) || Array.isArray(config.data) ? JSON.stringify(config.data) : config.data
     var errorHandler = onError(xhr, cb)
 
     xhr.onload = onLoad(xhr, cb)

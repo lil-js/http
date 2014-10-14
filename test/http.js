@@ -24,7 +24,7 @@ describe('http', function () {
 
   describe('GET', function () {
     it('should perform a valid request', function (done) {
-      http('fixtures/test.json', function (err, res) {
+      http('fixtures/test.json', { params: { name: 'Chuck' } }, function (err, res) {
         expect(err).to.be.null
         expect(res.status).to.be.equal(200)
         expect(res.data).to.be.deep.equal({ hello: 'world' })
@@ -50,10 +50,6 @@ describe('http', function () {
       http.post('fixtures/test.json', { data: 'bye' }, function (err, res) {
         expect(res).to.be.null
         expect(err.status).to.be.equal(404)
-        //expect(res.status).to.be.equal(200)
-        //expect(res.data).to.be.deep.equal({ hello: 'world' })
-        //expect(res.headers).to.be.an('object')
-        //expect(res.xhr).to.be.an('object')
         done()
       })
     })

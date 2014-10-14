@@ -93,6 +93,7 @@ lil.http.post('/register', {
 
 - **url** `string` - Server request URL
 - **data** `mixed` - Payload data to send as body request
+- **params** `object` - Map of key-value query string params
 - **headers** `object` - Map of strings representing HTTP headers to send to the server
 - **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
 - **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
