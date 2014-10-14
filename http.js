@@ -141,27 +141,25 @@
     return url
   }
 
-  function configureClient(xhr) {
+  function XHRFactory(url) {
+    if (hasDomainRequest && isCrossOrigin(url)) {
+      return new XDomainRequest()
+    } else {
+      return new XMLHttpRequest()
+    }
+  }
+
+  function createClient(config) {
+    var method = (config.method || 'GET').toUpperCase()
+    var auth = config.auth || {}
+    var url = getURL(config)
+
+    var xhr = XHRFactory(url)
     xhr.open(method, url, config.async, auth.user, auth.password)
     xhr.withCredentials = config.withCredentials
     xhr.responseType = config.responseType
     xhr.timeout = config.timeout
     setHeaders(xhr, config.headers)
-  }
-
-  function createClient(config) {
-    var xhr = null
-    var method = (config.method || 'GET').toUpperCase()
-    var auth = config.auth || {}
-    var url = getURL(config)
-
-    if (hasDomainRequest && isCrossOrigin(url)) {
-      xhr = new XDomainRequest()
-    } else {
-      xhr = new XMLHttpRequest()
-    }
-
-    configureClient(xhr)
     return xhr
   }
 
