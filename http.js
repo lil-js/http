@@ -141,6 +141,14 @@
     return url
   }
 
+  function configureClient(xhr) {
+    xhr.open(method, url, config.async, auth.user, auth.password)
+    xhr.withCredentials = config.withCredentials
+    xhr.responseType = config.responseType
+    xhr.timeout = config.timeout
+    setHeaders(xhr, config.headers)
+  }
+
   function createClient(config) {
     var xhr = null
     var method = (config.method || 'GET').toUpperCase()
@@ -153,11 +161,7 @@
       xhr = new XMLHttpRequest()
     }
 
-    xhr.open(method, url, config.async, auth.user, auth.password)
-    xhr.withCredentials = config.withCredentials
-    xhr.responseType = config.responseType
-    xhr.timeout = config.timeout
-    setHeaders(xhr, config.headers)
+    configureClient(xhr)
     return xhr
   }
 
