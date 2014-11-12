@@ -1,4 +1,4 @@
-/*! lil-http - v0.1 - MIT License - https://github.com/lil-js/http */
+/*! lil-http - v0.1.9 - MIT License - https://github.com/lil-js/http */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], factory)

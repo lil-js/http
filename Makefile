@@ -1,7 +1,8 @@
+VERSION = 0.1.9
 BROWSERIFY = node ./node_modules/browserify/bin/cmd.js
 MOCHA = ./node_modules/.bin/mocha
 UGLIFYJS = ./node_modules/.bin/uglifyjs
-BANNER = "/*! lil-http - v0.1 - MIT License - https://github.com/lil-js/http */"
+BANNER = "/*! lil-http - v$(VERSION) - MIT License - https://github.com/lil-js/http */"
 MOCHA_PHANTOM = ./node_modules/.bin/mocha-phantomjs
 
 define release
@@ -27,7 +28,7 @@ browser: uglify
 test: browser mocha
 
 uglify:
-	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) --source-map http.min.js.map > http.min.js
+	$(UGLIFYJS) http.js --mangle --preamble $(BANNER) --source-map http.min.js.map --source-map-url http://cdn.rawgit.com/lil-js/http/$(VERSION)/http.min.js.map > http.min.js
 
 mocha:
 	bash ./test/run.sh 8888
