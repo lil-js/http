@@ -48,21 +48,21 @@
   function setHeaders(xhr, headers) {
     if (isObj(headers)) {
       headers['Content-Type'] = headers['Content-Type'] || http.defaultContent
-      for (var field in headers) {
+      for (var field in headers) if (hasOwn.call(headers, field)) {
         xhr.setRequestHeader(field, headers[field])
       }
     }
   }
 
   function getHeaders(xhr) {
-    var map = {}, headers = xhr.getAllResponseHeaders().split('\n')
-    headers.forEach(function (header) {
-      if (header) {
-        header = header.split(':')
-        map[header[0].trim()] = (header[1] || '').trim()
-      }
+    var headers = {}, rawHeaders = xhr.getAllResponseHeaders().trim().split('\n')
+    rawHeaders.forEach(function (header) {
+      var split = header.trim().split(':')
+      var key = split.shift().trim()
+      var value = split.join(':').trim()
+      headers[key] = value
     })
-    return map
+    return headers
   }
 
   function isJSONResponse(xhr) {
@@ -119,6 +119,7 @@
   function onLoad(xhr, cb) {
     return function () {
       if (xhr.readyState === 4) {
+        if (xhr.status === 1223) status = 204 // IE9 fix
         if (xhr.status >= 200 && xhr.status < 400) {
           cb(null, buildResponse(xhr))
         } else {
