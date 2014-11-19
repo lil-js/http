@@ -79,12 +79,14 @@
   }
 
   function parseData(xhr) {
-    var data
-    if (xhr.responseType === 'text') {
-      data = xhr.responseText
-      if (isJSONResponse(xhr) && data) data = JSON.parse(data)
-    } else {
-      data = xhr.response
+    var data = null
+    if (xhr.readyState === 4) {
+      if (xhr.responseType === 'text') {
+        data = xhr.responseText
+        if (isJSONResponse(xhr) && data) data = JSON.parse(data)
+      } else {
+        data = xhr.response
+      }
     }
     return data
   }
