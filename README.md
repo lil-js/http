@@ -9,7 +9,7 @@ Tiny, lightweight, full featured HTTP client
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.10</td>
+<td><b>Version</b></td><td>0.1.11</td>
 </tr>
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
@@ -97,7 +97,6 @@ lil.http.post('/register', {
 - **headers** `object` - Map of strings representing HTTP headers to send to the server
 - **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
 - **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
-- **async** `boolean` - Set to `false` if the request must be performed as synchronous operation (not recommended)
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
 - **method** `string` - Request HTTP method. Default to `GET`
 - **responseType** `string` - Define how to handle the response data. Allowed values are: `text`, `arraybuffer`, `blob` or `document`

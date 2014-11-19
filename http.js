@@ -1,4 +1,4 @@
-/*! lil-http - v0.1.10 - MIT License - https://github.com/lil-js/http */
+/*! lil-http - v0.1.11 - MIT License - https://github.com/lil-js/http */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], factory)
@@ -12,7 +12,7 @@
   }
 }(this, function (exports) {
   'use strict'
-  var VERSION = '0.1.10'
+  var VERSION = '0.1.11'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
@@ -27,7 +27,6 @@
     timeout: 30 * 1000,
     auth: null,
     headers: null,
-    async: true,
     withCredentials: false,
     responseType: 'text'
   }
@@ -152,11 +151,15 @@
 
   function createClient(config) {
     var method = (config.method || 'GET').toUpperCase()
-    var auth = config.auth || {}
+    var auth = config.auth
     var url = getURL(config)
 
     var xhr = XHRFactory(url)
-    xhr.open(method, url, config.async, auth.user, auth.password)
+    if (auth) {
+      xhr.open(method, url, true, auth.user, auth.password)
+    } else {
+      xhr.open(method, url)
+    }
     xhr.withCredentials = config.withCredentials
     xhr.responseType = config.responseType
     xhr.timeout = config.timeout
