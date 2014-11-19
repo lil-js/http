@@ -47,7 +47,7 @@ component install lil-js/http
 
 Or loading the script remotely
 ```html
-<script src="//cdn.rawgit.com/lil-js/http/0.1.10/http.js"></script>
+<script src="//cdn.rawgit.com/lil-js/http/0.1.11/http.js"></script>
 ```
 
 ### Environments
@@ -92,11 +92,11 @@ lil.http.post('/register', {
 ### Config options
 
 - **url** `string` - Server request URL
-- **data** `mixed` - Payload data to send as body request
+- **data** `mixed` - Payload data to send as body request. See [MDN][sendXHR] for more information
 - **params** `object` - Map of key-value query string params
 - **headers** `object` - Map of strings representing HTTP headers to send to the server
 - **timeout** `number` - Request maximum timeout in milliseconds. Default to 30 seconds
-- **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties
+- **auth** `object` -  Authentication credentials to the server. Object must have the `user` and `password` properties with `string` values
 - **withCredentials** `boolean` - Whether to set the withCredentials flag on the XHR object. See [MDN][withcredentials] for more information
 - **method** `string` - Request HTTP method. Default to `GET`
 - **responseType** `string` - Define how to handle the response data. Allowed values are: `text`, `arraybuffer`, `blob` or `document`
@@ -173,4 +173,5 @@ $ make test
 [MIT](http://opensource.org/licenses/MIT) © Tomas Aparicio
 
 [withcredentials]: https://developer.mozilla.org/es/docs/Web/HTTP/Access_control_CORS#Requests_with_credentials
+[sendXHR]: https://developer.mozilla.org/es/docs/XMLHttpRequest#send()
 [travis]: http://travis-ci.org/lil-js/http

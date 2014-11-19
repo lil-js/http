@@ -26,6 +26,7 @@
     method: 'GET',
     timeout: 30 * 1000,
     auth: null,
+    data: null,
     headers: null,
     withCredentials: false,
     responseType: 'text'
