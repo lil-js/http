@@ -9,7 +9,7 @@ Tiny, lightweight, full featured HTTP client
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.11</td>
+<td><b>Version</b></td><td>0.1.12</td>
 </tr>
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
@@ -40,14 +40,14 @@ Via [Bower](http://bower.io)
 bower install lil-http
 ```
 
-Via [Component](https://github.com/componentjs/component)
+Via [Component](https://github.com/component/component)
 ```bash
 component install lil-js/http
 ```
 
 Or loading the script remotely
 ```html
-<script src="//cdn.rawgit.com/lil-js/http/0.1.11/http.js"></script>
+<script src="//cdn.rawgit.com/lil-js/http/0.1.12/http.js"></script>
 ```
 
 ### Environments

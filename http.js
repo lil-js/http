@@ -1,4 +1,4 @@
-/*! lil-http - v0.1.11 - MIT License - https://github.com/lil-js/http */
+/*! lil-http - v0.1.12 - MIT License - https://github.com/lil-js/http */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], factory)
@@ -12,7 +12,7 @@
   }
 }(this, function (exports) {
   'use strict'
-  var VERSION = '0.1.11'
+  var VERSION = '0.1.12'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
