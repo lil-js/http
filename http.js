@@ -184,7 +184,9 @@
   }
 
   function hasContentTypeHeader(config) {
-    return (config && config.headers['content-type'] || config.headers['Content-Type']) || false
+    return (config && isObj(config.headers)
+      && config.headers['content-type'] || config.headers['Content-Type'])
+      || false
   }
 
   function buildPayload(xhr, config) {
