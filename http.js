@@ -183,16 +183,33 @@
     }
   }
 
+  function hasContentTypeHeader(config) {
+    return (config && config.headers['content-type'] || config.headers['Content-Type']) || false
+  }
+
+  function buildPayload(xhr, config) {
+    var data = config.data
+    if (isObj(config.data) || Array.isArray(config.data)) {
+      if (hasContentTypeHeader(config) === false) {
+        xhr.setRequestHeader('Content-Type', 'application/json')
+      }
+      data = JSON.stringify(config.data)
+    }
+    return data
+  }
+
   function request(config, cb, progress) {
     var xhr = createClient(config)
-    var data = isObj(config.data) || Array.isArray(config.data) ? JSON.stringify(config.data) : config.data
+    var data = buildPayload(xhr, config)
     var errorHandler = onError(xhr, cb)
 
     xhr.onload = onLoad(xhr, cb)
     xhr.onerror = errorHandler
     xhr.ontimeout = errorHandler
     xhr.onabort = errorHandler
-    if (typeof progress === 'function') xhr.onprogress = updateProgress(xhr, progress)
+    if (typeof progress === 'function') {
+      xhr.onprogress = updateProgress(xhr, progress)
+    }
 
     try {
       xhr.send(data)
