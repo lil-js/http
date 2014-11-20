@@ -184,8 +184,8 @@
   }
 
   function hasContentTypeHeader(config) {
-    return (config && isObj(config.headers)
-      && config.headers['content-type'] || config.headers['Content-Type'])
+    return config && isObj(config.headers)
+      && (config.headers['content-type'] || config.headers['Content-Type'])
       || false
   }
 
