@@ -1,6 +1,7 @@
 describe('http', function () {
   var http = lil.http
   var phantom = location.search.indexOf('phantom') !== -1
+  var server = 'http://localhost:8882'
 
   it('should expose the http constructor', function () {
     expect(http).to.be.a('function')
@@ -65,10 +66,8 @@ describe('http', function () {
   })
 
   describe('remote server', function () {
-    var server = 'http://localhost:8882'
-
     describe('GET', function () {
-      describe('Fetch a JSON file', function () {
+      describe('fetch a JSON file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.get(server + '/comments.json', function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -78,7 +77,7 @@ describe('http', function () {
         })
       })
 
-      describe('Fetch a XML file', function () {
+      describe('fetch a XML file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.get(server + '/comments.xml', function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -120,7 +119,7 @@ describe('http', function () {
     })
 
     describe('POST', function () {
-      describe('Fetch a JSON file', function () {
+      describe('fetch a JSON file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.post(server + '/comments.json', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -130,7 +129,7 @@ describe('http', function () {
         })
       })
 
-      describe('Fetch a XML file', function () {
+      describe('fetch a XML file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.post(server + '/comments.xml', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -162,7 +161,7 @@ describe('http', function () {
     })
 
     describe('PUT', function () {
-      describe('Fetch a JSON file', function () {
+      describe('fetch a JSON file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.put(server + '/comments.json', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -172,7 +171,7 @@ describe('http', function () {
         })
       })
 
-      describe('Fetch a XML file', function () {
+      describe('fetch a XML file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.put(server + '/comments.xml', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -204,7 +203,7 @@ describe('http', function () {
     })
 
     describe('DELETE', function () {
-      describe('Fetch a JSON file', function () {
+      describe('fetch a JSON file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.del(server + '/comments.json', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)
@@ -214,7 +213,7 @@ describe('http', function () {
         })
       })
 
-      describe('Fetch a XML file', function () {
+      describe('fetch a XML file', function () {
         it('should perform the request and have a valid body', function (done) {
           http.del(server + '/comments.xml', { data: 'hello' }, function (err, res) {
             expect(res.status).to.be.equal(200)

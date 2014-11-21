@@ -45,6 +45,16 @@
     return target
   }
 
+  function once(fn) {
+    var called = false
+    return function () {
+      if (called === false) {
+        called = true
+        fn.apply(null, arguments)
+      }
+    }
+  }
+
   function setHeaders(xhr, headers) {
     if (isObj(headers)) {
       headers['Content-Type'] = headers['Content-Type'] || http.defaultContent
@@ -111,24 +121,37 @@
     return response
   }
 
-  function onError(xhr, cb) {
-    var called = false
-    return function (err) {
-      if (!called) {
-        cb(buildErrorResponse(xhr, err), null)
-        called = true
-      }
-    }
+  function dereferXHR(xhr) {
+    xhr.onreadystatechange = xhr.onerror = null
+    xhr.ontimeout = xhr.onabort = null
   }
 
-  function onLoad(xhr, cb) {
-    return function () {
+  function onError(xhr, cb) {
+    return once(function (err) {
+      dereferXHR(xhr)
+      cb(buildErrorResponse(xhr, err), null)
+    })
+  }
+
+  function onSuccess(xhr, cb) {
+    return once(function () {
+      dereferXHR(xhr)
+      cb(null, buildResponse(xhr))
+    })
+  }
+
+  function isValidResponseStatus(xhr) {
+    if (xhr.status === 1223) xhr.status = 204 // IE9 fix
+    return xhr.status >= 200 && xhr.status < 300 || xhr.status === 304
+  }
+
+  function onStateChange(xhr, onSuccess, onError) {
+    return function (ev) {
       if (xhr.readyState === 4) {
-        if (xhr.status === 1223) status = 204 // IE9 fix
-        if (xhr.status >= 200 && xhr.status < 400) {
-          cb(null, buildResponse(xhr))
+        if (isValidResponseStatus(xhr)) {
+          onSuccess(ev)
         } else {
-          cb(buildResponse(xhr), null)
+          onError(ev)
         }
       }
     }
@@ -175,8 +198,8 @@
 
   function updateProgress(xhr, cb) {
     return function (ev) {
-      if (evt.lengthComputable) {
-        cb(ev, evt.loaded / evt.total)
+      if (ev.lengthComputable) {
+        cb(ev, ev.loaded / ev.total)
       } else {
         cb(ev)
       }
@@ -191,7 +214,7 @@
 
   function buildPayload(xhr, config) {
     var data = config.data
-    if (isObj(config.data) || Array.isArray(config.data)) {
+    if (config.data && isObj(config.data) || Array.isArray(config.data)) {
       if (hasContentTypeHeader(config) === false) {
         xhr.setRequestHeader('Content-Type', 'application/json')
       }
@@ -204,8 +227,9 @@
     var xhr = createClient(config)
     var data = buildPayload(xhr, config)
     var errorHandler = onError(xhr, cb)
+    var successHandler = onSuccess(xhr, cb)
 
-    xhr.onload = onLoad(xhr, cb)
+    xhr.onreadystatechange = onStateChange(xhr, successHandler, errorHandler)
     xhr.onerror = errorHandler
     xhr.ontimeout = errorHandler
     xhr.onabort = errorHandler
@@ -214,7 +238,7 @@
     }
 
     try {
-      xhr.send(data)
+      xhr.send(data ? data : null)
     } catch (e) {
       errorHandler(e)
     }
@@ -231,8 +255,11 @@
       for (i = 0, l = args.length; i < l; i += 1) {
         cur = args[i]
         if (typeof cur === 'function') {
-          cb = cur
-          if (cb !== cur) progress = cur
+          if (args.length === (i + 1) && typeof args[i - 1] === 'function') {
+            progress = cur
+          } else {
+            cb = cur
+          }
         } else if (isObj(cur)) {
           extend(config, cur)
         } else if (typeof cur === 'string' && !config.url) {
