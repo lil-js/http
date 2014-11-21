@@ -1,4 +1,4 @@
-/*! lil-http - v0.1.13 - MIT License - https://github.com/lil-js/http */
+/*! lil-http - v0.1.14 - MIT License - https://github.com/lil-js/http */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports'], factory)
@@ -13,7 +13,7 @@
 }(this, function (exports) {
   'use strict'
 
-  var VERSION = '0.1.13'
+  var VERSION = '0.1.14'
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
@@ -122,23 +122,8 @@
     return response
   }
 
-  function dereferXHR(xhr) {
-    xhr.onreadystatechange = xhr.onerror = null
-    xhr.ontimeout = xhr.onabort = null
-  }
-
-  function onError(xhr, cb) {
-    return once(function (err) {
-      dereferXHR(xhr)
-      cb(buildErrorResponse(xhr, err), null)
-    })
-  }
-
-  function onSuccess(xhr, cb) {
-    return once(function () {
-      dereferXHR(xhr)
-      cb(null, buildResponse(xhr))
-    })
+  function cleanReferences(xhr) {
+    xhr.onreadystatechange = xhr.onerror = xhr.ontimeout = null
   }
 
   function isValidResponseStatus(xhr) {
@@ -146,13 +131,21 @@
     return xhr.status >= 200 && xhr.status < 300 || xhr.status === 304
   }
 
-  function onStateChange(xhr, onSuccess, onError) {
-    return function (ev) {
+  function onError(xhr, cb) {
+    return once(function (err) {
+      cleanReferences(xhr)
+      cb(buildErrorResponse(xhr, err), null)
+    })
+  }
+
+  function onLoad(xhr, cb) {
+    return function () {
       if (xhr.readyState === 4) {
+        cleanReferences(xhr)
         if (isValidResponseStatus(xhr)) {
-          onSuccess(ev)
+          cb(null, buildResponse(xhr))
         } else {
-          onError(ev)
+          cb(buildResponse(xhr), null)
         }
       }
     }
@@ -199,8 +192,8 @@
 
   function updateProgress(xhr, cb) {
     return function (ev) {
-      if (ev.lengthComputable) {
-        cb(ev, ev.loaded / ev.total)
+      if (evt.lengthComputable) {
+        cb(ev, evt.loaded / evt.total)
       } else {
         cb(ev)
       }
@@ -215,7 +208,7 @@
 
   function buildPayload(xhr, config) {
     var data = config.data
-    if (config.data && isObj(config.data) || Array.isArray(config.data)) {
+    if (isObj(config.data) || Array.isArray(config.data)) {
       if (hasContentTypeHeader(config) === false) {
         xhr.setRequestHeader('Content-Type', 'application/json')
       }
@@ -228,12 +221,10 @@
     var xhr = createClient(config)
     var data = buildPayload(xhr, config)
     var errorHandler = onError(xhr, cb)
-    var successHandler = onSuccess(xhr, cb)
 
-    xhr.onreadystatechange = onStateChange(xhr, successHandler, errorHandler)
+    xhr.onload = onLoad(xhr, cb)
     xhr.onerror = errorHandler
     xhr.ontimeout = errorHandler
-    xhr.onabort = errorHandler
     if (typeof progress === 'function') {
       xhr.onprogress = updateProgress(xhr, progress)
     }
@@ -268,7 +259,7 @@
         }
       }
 
-      return request(config, cb || noop, progress)
+      return request(config, cb || noop, progress)
     }
   }
 
