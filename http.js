@@ -142,7 +142,6 @@
     return function (ev) {
       if (xhr.readyState === 4) {
         cleanReferences(xhr)
-        console.log(config.method, config.url, xhr.status, isValidResponseStatus(xhr))
         if (isValidResponseStatus(xhr)) {
           cb(null, buildResponse(xhr))
         } else {
