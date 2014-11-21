@@ -17,6 +17,7 @@
   var toStr = Object.prototype.toString
   var slicer = Array.prototype.slice
   var hasOwn = Object.prototype.hasOwnProperty
+  var hasBind = typeof Function.prototype.bind === 'function'
   var origin = location.origin
   var originRegex = /^(http[s]?:\/\/[a-z0-9\-\.\:]+)[\/]?/i
   var jsonMimeRegex = /application\/json/
@@ -115,7 +116,7 @@
   }
 
   function buildErrorResponse(xhr, error) {
-    var response = new Error(error.message || 'Request error')
+    var response = new Error(error.message || 'Request error')
     extend(response, buildResponse(xhr))
     response.error = error
     response.stack = error.stack
@@ -133,19 +134,19 @@
 
   function onError(xhr, cb) {
     return once(function (err) {
-      cleanReferences(xhr)
       cb(buildErrorResponse(xhr, err), null)
     })
   }
 
-  function onLoad(xhr, cb) {
-    return function () {
+  function onLoad(config, xhr, cb) {
+    return function (ev) {
       if (xhr.readyState === 4) {
         cleanReferences(xhr)
+        console.log(config.method, config.url, xhr.status, isValidResponseStatus(xhr))
         if (isValidResponseStatus(xhr)) {
           cb(null, buildResponse(xhr))
         } else {
-          cb(buildResponse(xhr), null)
+          onError(xhr, cb)(ev)
         }
       }
     }
@@ -192,8 +193,8 @@
 
   function updateProgress(xhr, cb) {
     return function (ev) {
-      if (evt.lengthComputable) {
-        cb(ev, evt.loaded / evt.total)
+      if (ev.lengthComputable) {
+        cb(ev, ev.loaded / ev.total)
       } else {
         cb(ev)
       }
@@ -217,14 +218,33 @@
     return data
   }
 
+  function timeoutResolver(cb, timeoutId) {
+    return function () {
+      clearTimeout(timeoutId)
+      cb.apply(null, arguments)
+    }
+  }
+
   function request(config, cb, progress) {
     var xhr = createClient(config)
     var data = buildPayload(xhr, config)
     var errorHandler = onError(xhr, cb)
 
-    xhr.onload = onLoad(xhr, cb)
+    if (hasBind) {
+      xhr.ontimeout = errorHandler
+    } else {
+      var timeoutId = setTimeout(function abort() {
+        if (xhr.readyState !== 4) {
+          xhr.abort()
+        }
+      }, config.timeout)
+      cb = timeoutResolver(cb, timeoutId)
+      errorHandler = onError(xhr, cb)
+    }
+
+    xhr.onreadystatechange = onLoad(config, xhr, cb)
     xhr.onerror = errorHandler
-    xhr.ontimeout = errorHandler
+    xhr.onabort = errorHandler
     if (typeof progress === 'function') {
       xhr.onprogress = updateProgress(xhr, progress)
     }
