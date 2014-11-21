@@ -115,7 +115,7 @@
   }
 
   function buildErrorResponse(xhr, error) {
-    var response = new Error(error.message)
+    var response = new Error(error.message || 'Request error')
     extend(response, buildResponse(xhr))
     response.error = error
     response.stack = error.stack
