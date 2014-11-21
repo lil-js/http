@@ -101,10 +101,14 @@
     return data
   }
 
+  function getStatus(status) {
+    return status === 1223 ? 204 : status // IE9 fix
+  }
+
   function buildResponse(xhr) {
     var response = {
       xhr: xhr,
-      status: xhr.status,
+      status: getStatus(xhr.status),
       statusText: xhr.statusText,
       data: null,
       headers: {}
@@ -128,7 +132,7 @@
   }
 
   function isValidResponseStatus(xhr) {
-    var status = xhr.status = xhr.status === 1223 ? 204 : xhr.status // IE9 fix
+    var status = getStatus(xhr.status)
     return status >= 200 && status < 300 || status === 304
   }
 
