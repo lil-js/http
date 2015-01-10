@@ -1,6 +1,22 @@
 {
   "name": "lil-http",
-  "private": true,
+  "description": "Tiny, lightweight, full featured HTTP client",
+  "version": "0.1.15",
+  "license": "MIT",
+  "repository": "lil-js/http",
+  "author": "Tomas Aparicio",
+  "main": "./http.js",
+  "keywords": [
+    "lil",
+    "tiny",
+    "micro",
+    "http",
+    "request",
+    "xhr",
+    "ajax",
+    "https",
+    "agent"
+  ],
   "scripts": {
     "test": "make test"
   },
