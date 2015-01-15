@@ -252,7 +252,7 @@
     }
 
     try {
-      xhr.send(data ? data : null)
+      xhr.send(data || null)
     } catch (e) {
       errorHandler(e)
     }
@@ -295,9 +295,9 @@
   http.get = requestFactory('GET')
   http.post = requestFactory('POST')
   http.put = requestFactory('PUT')
-  http.del = requestFactory('DELETE')
   http.patch = requestFactory('PATCH')
   http.head = requestFactory('HEAD')
+  http.delete = http.del = requestFactory('DELETE')
 
   return exports.http = http
 }))
