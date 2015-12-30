@@ -1,7 +1,7 @@
 {
   "name": "lil-http",
   "description": "Tiny, lightweight, full featured HTTP client",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "license": "MIT",
   "repository": "lil-js/http",
   "author": "Tomas Aparicio",

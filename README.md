@@ -2,14 +2,14 @@
 
 <img align="center" height="150" src="http://lil-js.github.io/img/liljs-logo.png" />
 
-Tiny, lightweight, full featured HTTP client
+Tiny, lightweight, full featured HTTP client for the browser.
 
 <table>
 <tr>
 <td><b>Name</b></td><td>http</td>
 </tr>
 <tr>
-<td><b>Version</b></td><td>0.1.16</td>
+<td><b>Version</b></td><td>0.1.17</td>
 </tr>
 <tr>
 <td><b>Size</b></td><td>3 KB / 1 KB (gzipped)</td>
@@ -30,7 +30,7 @@ Tiny, lightweight, full featured HTTP client
 - Request progress status report
 - Support passing custom headers
 - Transparent support for CORS (in IE)
-- Trivial request state handling based on callback
+- Simple request state handling based on callback
 - Transparent payload JSON serializer
 
 ## Installation
@@ -47,7 +47,7 @@ component install lil-js/http
 
 Or loading the script remotely
 ```html
-<script src="//cdn.rawgit.com/lil-js/http/0.1.16/http.js"></script>
+<script src="//cdn.rawgit.com/lil-js/http/0.1.17/http.js"></script>
 ```
 
 ### Environments
